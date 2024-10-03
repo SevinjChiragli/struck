@@ -1,20 +1,21 @@
 // Нужно создать массив товаров и вывести его в DOM.
-// Сделать так чтобы при нажатии на первый элемент он перечеркивался
+// Сделать так чтобы при нажатии на какой-то из элементов он перечеркивался
 //  уже другие элементы при нажатии не перечеркивались
 let goods = ["bread", "water", "juise", "fruit"];
+let struck = false;
 const showList = () => {
-    let container=document.getElementById('container')
-  goods.forEach((item,index) => {
-    let div=document.createElement('div')
-  div.innerHTML = `
+  let container = document.getElementById("container");
+  goods.forEach((item) => {
+    let div = document.createElement("div");
+    div.innerHTML = `
        <p>${item}</p>`;
-       container.appendChild(div)
-       if(index===0){
-        div.querySelector('p').addEventListener('click',()=>{
-            div.querySelector('p').style='text-decoration:line-through'
-        })
-       }
+    container.appendChild(div);
+    div.addEventListener("click", () => {
+      if (!struck) {
+        div.style = "text-decoration: line-through";
+        struck = true;
+      }
+    });
   });
 };
 showList();
-
